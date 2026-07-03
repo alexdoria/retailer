@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: dn-point-of-sale
+  datasource:
+    # url: jdbc:h2:file:~/development/dn-pointofsale/db-pointofsale/dn-pos.db
+    url: jdbc:h2:file:~/development/dn-pointofsale/db-pointofsale/dn-pos-test.db
+    username: mammoth
+    password: A!123
+    driverClassName: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+  jpa:
+    open-in-view: false
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+
+server:
+  servlet:
+    context-path: /pos
