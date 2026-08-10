@@ -10,10 +10,10 @@ import java.util.Set;
 @Getter
 @Setter
 public class CartResponse {
-    private Integer id;
-    private Set<ProductResponse> cartProducts;
-    private LocalDateTime createdAt;
-    private BigDecimal amount;
-    private CustomerResponse buyer;
+  private Integer id;
+  private Set<ProductResponse> cartProducts;
+  private LocalDateTime createdAt;
+  private BigDecimal amount;
+  private CustomerResponse buyer;
 
 }

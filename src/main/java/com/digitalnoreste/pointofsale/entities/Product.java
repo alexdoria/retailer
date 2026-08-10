@@ -14,33 +14,33 @@ import java.time.LocalDateTime;
 @Table(name = "PRODUCT")
 public class Product implements Serializable {
 
-    @Id
-    @GeneratedValue
-    private Integer Id;
+  @Id
+  @GeneratedValue
+  private Integer Id;
 
-    @Column(name = "NAME")
-    private String name;
+  @Column(name = "NAME")
+  private String name;
 
-    @Column(name = "DESCRIPTION")
-    private String description;
+  @Column(name = "DESCRIPTION")
+  private String description;
 
-    @Column(name = "PRICE_BUY")
-    private BigDecimal priceBuy;
+  @Column(name = "PRICE_BUY")
+  private BigDecimal priceBuy;
 
-    @Column(name = "PRICE_SELL")
-    private BigDecimal priceSell;
+  @Column(name = "PRICE_SELL")
+  private BigDecimal priceSell;
 
-    @Column(name = "INVENTORY")
-    private BigDecimal inventory;
+  @Column(name = "INVENTORY")
+  private BigDecimal inventory;
 
-    @Column(name = "UNIT")
-    private String unit;
+  @Column(name = "UNIT")
+  private String unit;
 
-    @Column(name = "CREATED_AT")
-    private LocalDateTime createdAt;
+  @Column(name = "CREATED_AT")
+  private LocalDateTime createdAt;
 
-    public String toString(){
-        return name;
-    }
+  public String toString() {
+    return name;
+  }
 
 }

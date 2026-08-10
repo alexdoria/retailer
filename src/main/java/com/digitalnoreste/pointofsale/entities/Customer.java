@@ -18,26 +18,27 @@ import java.util.Set;
 @Table(name = "CUSTOMER")
 public class Customer implements Serializable {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
+  @Serial
+  private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue
-    private Long Id;
+  @Id
+  @GeneratedValue
+  private Long Id;
 
-    @Column
-    private String username;
+  @Column
+  private String username;
 
-    @Column
-    private String role;
+  @Column
+  private String role;
 
-    @Column
-    private LocalDateTime createdAt;
+  @Column
+  private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "buyer")
-    private Set<Cart> carts = new HashSet<>();
+  @OneToMany(mappedBy = "buyer")
+  private Set<Cart> carts = new HashSet<>();
 
-    public Customer(String name) {
-        this.username = name;
-    }
+  public Customer(String name) {
+    this.username = name;
+  }
+
 }
