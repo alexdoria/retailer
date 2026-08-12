@@ -1,6 +1,7 @@
 package com.digitalnoreste.pointofsale.service;
 
 import com.digitalnoreste.pointofsale.dao.repository.CartRepository;
+import com.digitalnoreste.pointofsale.dto.request.CartRequest;
 import com.digitalnoreste.pointofsale.dto.request.CustomerRequest;
 import com.digitalnoreste.pointofsale.dto.request.ProductRequest;
 import com.digitalnoreste.pointofsale.dto.response.CartResponse;
@@ -10,16 +11,14 @@ import com.digitalnoreste.pointofsale.entities.Cart;
 import com.digitalnoreste.pointofsale.entities.Customer;
 import com.digitalnoreste.pointofsale.entities.Product;
 import com.digitalnoreste.pointofsale.exception.CartNotFoundException;
-import com.digitalnoreste.pointofsale.dto.request.CartRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -56,12 +55,6 @@ public class CartServiceImpl implements CartService {
   }
 
   @Override
-  public void deleteSale(Integer cartId) {
-    log.info("Deleting Cart with ID: {} from the database.", cartId);
-    cartRepository.deleteById(cartId);
-  }
-
-  @Override
   public CartResponse updateSale(CartRequest cartRequest, Integer cartId) {
     log.info("Updating Cart with ID: {} in the database. New Amount: {}, Customer: {}. Product count: {}", cartId,
         cartRequest.getAmount(), cartRequest.getBuyer().getUsername(), cartRequest.getCartProducts().size());
@@ -73,11 +66,17 @@ public class CartServiceImpl implements CartService {
     return toResponse(saved);
   }
 
+  @Override
+  public void deleteSale(Integer cartId) {
+    log.info("Deleting Cart with ID: {} from the database.", cartId);
+    cartRepository.deleteById(cartId);
+  }
+
   private CartResponse toResponse(Cart cart) {
     CartResponse cartResponse = new CartResponse();
     cartResponse.setId(cart.getId());
     cartResponse.setCartProducts(
-        Collections.unmodifiableSet(toResponse(cart.getCartProducts())));
+        toResponse(cart.getCartProducts()));
     cartResponse.setCreatedAt(cart.getCreated());
     cartResponse.setAmount(cart.getAmount());
     cartResponse.setBuyer(toResponse(cart.getBuyer()));
