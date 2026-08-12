@@ -23,27 +23,27 @@ public class CartController {
     this.cartService = cartService;
   }
 
-  @GetMapping("/all")
-  public List<CartResponse> allCarts() {
-    return cartService.getAllCarts();
+  @PostMapping("/")
+  public CartResponse createCart(@Valid @RequestBody CartRequest cartRequest) {
+    log.info("Cart request received: {}", cartRequest);
+    return cartService.createCart(cartRequest);
   }
 
-  @PostMapping("/")
-  public CartResponse createSale(@Valid @RequestBody CartRequest cartRequest) {
-    log.info("Cart request received: {}", cartRequest);
-    return cartService.createSale(cartRequest);
+  @GetMapping("/")
+  public List<CartResponse> allCarts() {
+    return cartService.getAllCarts();
   }
 
   @PutMapping("/{id}")
   public CartResponse updateSale(@Valid @RequestBody CartRequest cartRequest, @PathVariable Integer id) {
     log.info("Update Cart request recieced: {}", id);
-    return cartService.updateSale(cartRequest, id);
+    return cartService.updateCart(cartRequest, id);
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> deleteSale(@PathVariable Integer id) {
     log.info("Delete Cart request received: {}", id);
-    cartService.deleteSale(id);
+    cartService.deleteCart(id);
     return ResponseEntity.noContent().build();
   }
 }

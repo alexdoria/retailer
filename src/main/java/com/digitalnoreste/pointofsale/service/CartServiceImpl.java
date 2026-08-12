@@ -34,7 +34,7 @@ public class CartServiceImpl implements CartService {
   }
 
   @Override
-  public CartResponse createSale(CartRequest cartRequest) {
+  public CartResponse createCart(CartRequest cartRequest) {
     Cart cartToSave = toEntity(cartRequest);
     // Save cart to database
     Cart saved = cartRepository.save(cartToSave);
@@ -55,7 +55,7 @@ public class CartServiceImpl implements CartService {
   }
 
   @Override
-  public CartResponse updateSale(CartRequest cartRequest, Integer cartId) {
+  public CartResponse updateCart(CartRequest cartRequest, Integer cartId) {
     log.info("Updating Cart with ID: {} in the database. New Amount: {}, Customer: {}. Product count: {}", cartId,
         cartRequest.getAmount(), cartRequest.getBuyer().getUsername(), cartRequest.getCartProducts().size());
     Cart cartToUpdate = cartRepository.findById(cartId).orElseThrow(() -> new CartNotFoundException(cartId));
@@ -67,7 +67,7 @@ public class CartServiceImpl implements CartService {
   }
 
   @Override
-  public void deleteSale(Integer cartId) {
+  public void deleteCart(Integer cartId) {
     log.info("Deleting Cart with ID: {} from the database.", cartId);
     cartRepository.deleteById(cartId);
   }
