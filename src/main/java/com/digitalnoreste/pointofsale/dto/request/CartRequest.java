@@ -1,5 +1,6 @@
 package com.digitalnoreste.pointofsale.dto.request;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,14 +15,15 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Builder
 @ToString
 public class CartRequest implements Serializable {
 
     @NotNull
     @DecimalMin("0.01")
-    private BigDecimal amount;
+    private final BigDecimal amount;
 
-    private CustomerRequest buyer;
+    private final CustomerRequest buyer;
 
     @NotEmpty
     private Set<ProductRequest> cartProducts = new HashSet<>();

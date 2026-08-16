@@ -51,7 +51,7 @@ public class CartServiceImpl implements CartService {
   public List<CartResponse> getAllCarts() {
     log.info("Fetching all Carts....");
     return cartRepository.findAll().stream().map(
-        t -> toResponse(t)).collect(Collectors.toList());
+            this::toResponse).collect(Collectors.toList());
   }
 
   @Override
@@ -84,7 +84,7 @@ public class CartServiceImpl implements CartService {
   }
 
   private Set<ProductResponse> toResponse(Set<Product> products) {
-    return products.stream().map(t -> toResponse(t)).collect(Collectors.toSet());
+    return products.stream().map(this::toResponse).collect(Collectors.toSet());
   }
 
   private CustomerResponse toResponse(Customer customer) {
